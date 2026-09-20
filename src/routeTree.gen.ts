@@ -10,33 +10,74 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CircuitAnalyzerRouteImport } from './routes/circuit-analyzer'
+import { Route as DiagnoseRouteImport } from './routes/diagnose'
+import { Route as HistoryRouteImport } from './routes/history'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CircuitAnalyzerRoute = CircuitAnalyzerRouteImport.update({
+  id: '/circuit-analyzer',
+  path: '/circuit-analyzer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiagnoseRoute = DiagnoseRouteImport.update({
+  id: '/diagnose',
+  path: '/diagnose',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/circuit-analyzer': typeof CircuitAnalyzerRoute
+  '/diagnose': typeof DiagnoseRoute
+  '/history': typeof HistoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/circuit-analyzer': typeof CircuitAnalyzerRoute
+  '/diagnose': typeof DiagnoseRoute
+  '/history': typeof HistoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/circuit-analyzer': typeof CircuitAnalyzerRoute
+  '/diagnose': typeof DiagnoseRoute
+  '/history': typeof HistoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/about' | '/circuit-analyzer' | '/diagnose' | '/history'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/circuit-analyzer' | '/diagnose' | '/history'
+  id:
+    '__root__' | '/' | '/about' | '/circuit-analyzer' | '/diagnose' | '/history'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CircuitAnalyzerRoute: typeof CircuitAnalyzerRoute
+  DiagnoseRoute: typeof DiagnoseRoute
+  HistoryRoute: typeof HistoryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +89,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/circuit-analyzer': {
+      id: '/circuit-analyzer'
+      path: '/circuit-analyzer'
+      fullPath: '/circuit-analyzer'
+      preLoaderRoute: typeof CircuitAnalyzerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diagnose': {
+      id: '/diagnose'
+      path: '/diagnose'
+      fullPath: '/diagnose'
+      preLoaderRoute: typeof DiagnoseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CircuitAnalyzerRoute: CircuitAnalyzerRoute,
+  DiagnoseRoute: DiagnoseRoute,
+  HistoryRoute: HistoryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
