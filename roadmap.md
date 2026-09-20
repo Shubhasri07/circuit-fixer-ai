@@ -6,4 +6,4 @@
 - [x] Build Circuit Analyzer upload mockup
 - [x] Build History with sample cases
 - [x] Build About page
-- [ ] Verify desktop and mobile layouts
+- [x] Verify desktop and mobile layouts
